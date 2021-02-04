@@ -14,7 +14,6 @@ if (configPropertiesFile.exists()) {
     configProperties.load(new FileInputStream(configPropertiesFile))
 }
 def pass_decryption = configProperties['PASSWORD']
-println pass_decryption
 def location_key = secureDecrypt(pass_decryption, pass_decryption, configProperties['LOCATION_KEY'])
 def app_id_key = secureDecrypt(pass_decryption, pass_decryption, configProperties['APP_ID'])
 
@@ -119,10 +118,8 @@ dependencies {
 
 
 static String secureDecrypt(String pass, String vector, String value) {
-    println(vector)
     def cipherText = value.decodeBase64()
     def bytesVector = vector.getBytes("UTF-8")
-    println(bytesVector.length)
     def iv = new IvParameterSpec(bytesVector)
     Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
     SecretKeySpec key = new SecretKeySpec(pass.getBytes("UTF-8"), "AES")

@@ -37,14 +37,12 @@ Security Config
 ---------------
 The project created a config file [config.properties](config.properties) to store all the key or config. This file can be replace with CI/CD in build time script for safer with production mode
 
-All key in config file has been encrypted and the password also can load from environment variable in the real app.
+All keys in config file has been encrypted and the password can be load from environment variable in the real app.
 decrypt gradle script:
 ```
 static String secureDecrypt(String pass, String vector, String value) {
-    println(vector)
     def cipherText = value.decodeBase64()
     def bytesVector = vector.getBytes("UTF-8")
-    println(bytesVector.length)
     def iv = new IvParameterSpec(bytesVector)
     Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
     SecretKeySpec key = new SecretKeySpec(pass.getBytes("UTF-8"), "AES")
@@ -62,7 +60,6 @@ if (configPropertiesFile.exists()) {
     configProperties.load(new FileInputStream(configPropertiesFile))
 }
 def pass_decryption = configProperties['PASSWORD']
-println pass_decryption
 def location_key = secureDecrypt(pass_decryption, pass_decryption, configProperties['LOCATION_KEY'])
 def app_id_key = secureDecrypt(pass_decryption, pass_decryption, configProperties['APP_ID'])
 ```
