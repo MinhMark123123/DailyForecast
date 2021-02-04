@@ -1,0 +1,13 @@
+<resources>
+    <!--<string name="app_name">DailyForecast</string>-->
+    <string name="title_home">Home</string>
+    <string name="title_histories">Histories</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="search_box_hint">Input your city</string>
+    <string name="temperature_format">%1$s\u2103</string>
+    <string name="date_format">Date : %1$s</string>
+    <string name="pressure_format">Pressure: %1$s</string>
+    <string name="humidity_format">Humidity: %1$s</string>
+    <string name="city_format">City: %1$s</string>
+    <string name="country_format">Country: %1$s</string>
+</resources>
