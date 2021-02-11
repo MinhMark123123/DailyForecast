@@ -13,7 +13,7 @@ UI/UX
 -----
 We have two screen :
 ** 1 input country . The data response will be cached with Room and can be reused at the next launch -> if user search more the records storage in local will be increase.
-![Screenshot_1612466564.png](static/Screenshot_1612466564.png) 
+![Screenshot_1612466564.png](static/Screenshot_1612466564.png)
 
 
 ** 2 Detail scree: show the data of the daily forecast can auto retry if there are no connection.

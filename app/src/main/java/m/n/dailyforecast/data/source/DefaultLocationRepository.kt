@@ -2,7 +2,6 @@ package m.n.dailyforecast.data.source
 
 import io.reactivex.rxjava3.core.Observable
 import m.n.dailyforecast.data.CityLocation
-import m.n.dailyforecast.data.source.remote.LocationRemoteDataSource
 import javax.inject.Inject
 
 class DefaultLocationRepository @Inject constructor(
@@ -18,10 +17,8 @@ class DefaultLocationRepository @Inject constructor(
             return queryAllLocations()
         }
         return localLocationSrc.queryLocations(key)
-            .onErrorResumeNext {
-                remoteSrc.queryLocations(key).doAfterNext { saveLocation(it) }
-            }
-            .switchIfEmpty {  remoteSrc.queryLocations(key).doAfterNext { saveLocation(it) } }
+            .onErrorResumeNext { remoteSrc.queryLocations(key).doAfterNext { saveLocation(it) } }
+            .switchIfEmpty(remoteSrc.queryLocations(key).doAfterNext { saveLocation(it) })
     }
 
     override fun saveLocation(listData: List<CityLocation>) {

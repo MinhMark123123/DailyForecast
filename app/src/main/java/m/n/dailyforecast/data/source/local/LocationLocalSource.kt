@@ -11,7 +11,13 @@ class LocationLocalSource @Inject constructor(
 ) : LocationDataSource {
     var listLocation: List<CityLocation> = ArrayList()
     override fun queryLocations(key: String): Observable<List<CityLocation>> {
-        val result = listLocation.filter { it.components.city?.replace(" ", "")?.contains(key.replace(" ", ""), ignoreCase = true)?:false  }
+        val result = listLocation.filter {
+            it.components.city?.replace(" ", "")?.contains(key.replace(" ", ""), ignoreCase = true)
+                ?: false
+        }
+        if (result.isEmpty()) {
+            return Observable.empty()
+        }
         return Observable.just(ArrayList(result))
     }
 
