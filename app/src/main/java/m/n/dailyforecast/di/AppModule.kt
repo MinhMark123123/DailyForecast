@@ -87,8 +87,8 @@ class AppModule {
     @Singleton
     @Provides
     fun provideLocationRepository(
-        @RemoteDataSource remoteSrc: LocationDataSource,
-        @LocalDataSource localSrc: LocationDataSource
+        @LocalDataSource localSrc: LocationDataSource,
+        @RemoteDataSource remoteSrc: LocationDataSource
     ): LocationRepository {
         return DefaultLocationRepository(localSrc, remoteSrc)
     }

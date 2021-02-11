@@ -99,6 +99,7 @@ dependencies {
     //rx
     implementation "io.reactivex.rxjava3:rxandroid:$rx_version"
     implementation "io.reactivex.rxjava3:rxjava:$rx_version"
+    implementation "io.reactivex.rxjava3:rxkotlin:$rx_version"
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofi_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofi_version"
