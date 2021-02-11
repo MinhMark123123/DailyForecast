@@ -7,10 +7,13 @@ import javax.inject.Inject
 
 class LocationRemoteDataSource @Inject constructor(
     var apiLocation: ApiLocation
-) : LocationDataSource{
+) : LocationDataSource {
 
     override fun queryLocations(key: String): Observable<List<CityLocation>> {
-        return apiLocation.requestLocation(key).flatMap { Observable.just(it.body()?.cityLocations) }
+        return apiLocation.requestLocation(key)
+            .flatMap {
+                Observable.just(it.body()?.cityLocations)
+            }
     }
 
     override fun loadAllLocations(): Observable<List<CityLocation>> {
