@@ -25,6 +25,12 @@ class HomeViewModel @Inject constructor(
     private val keyQueryResult: PublishSubject<String> = PublishSubject.create()
 
     init {
+        initSearchObservable()
+        //search all first
+        queryLocation("")
+    }
+
+    private fun initSearchObservable() {
         disposables.add(
             keyQueryResult.distinctUntilChanged()
                 .switchMap { queryKey -> getLocationUseCase.invoke(queryKey) }
